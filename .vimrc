@@ -166,10 +166,10 @@ set foldlevel=99
 set hidden
 let g:buftabline_plug_max = 13
 let g:buftabline_indicators = 1
-nmap <leader>[ :bp!<CR>
-nmap <leader>] :bn!<CR>
+nmap <leader>[ :bp<CR>
+nmap <leader>] :bn<CR>
 nnoremap <leader>q :bp \| bd#<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap <leader>p :b#<CR>
 nnoremap <leader>o :BufOnly<CR>
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
@@ -367,8 +367,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>=  <Plug>(coc-format-selected)
-nmap <leader>=  <Plug>(coc-format-selected)
+xmap <leader>i <Plug>(coc-format-selected)
+nmap <leader>i <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!

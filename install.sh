@@ -41,5 +41,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+# symlink init.vim
+mkdir -p ~/.config/nvim/
+ln -sfn ${dotfiledir}/init.vim ${homedir}/.config/nvim/init.vim
+
 # Import fonts
 mv ${dotfiledir}/SF-Mono-Powerline/*.otf ${homedir}/Library/Fonts/

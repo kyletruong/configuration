@@ -15,14 +15,7 @@ Bright Black: `40% Gray`
 # Neovim
 https://neovim.io/doc/user/nvim.html#nvim-from-vim
 
-```
-(?) rm ~/.viminfo
-mkdir -p ~/.config/nvim/ && touch ~/.config/nvim/init.vim
-
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-```
+if ~/.viminfo exists, rm before starting nvim
 
 run `:checkhealth`  
 to use python2 pip run `python2.7 -m ensurepip --default-pip`
@@ -30,6 +23,8 @@ to use python2 pip run `python2.7 -m ensurepip --default-pip`
 # CoC Extensions
 `coc-pairs coc-json coc-snippets coc-emmet coc-tsserver`
 
-# Misc
+# App Store
 - Todoist
 - Magnet
+- 1Password
+- AdGuard
