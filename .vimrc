@@ -59,6 +59,10 @@ endif
 map <space> <leader>
 nnoremap <leader>m :MarkdownPreview<cr>
 nnoremap <C-]> g<C-]>
+command WQ wq
+command Wq wq
+command W w
+command Q q
 
 " signify
 let g:signify_sign_delete = '_'
