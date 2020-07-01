@@ -1,4 +1,17 @@
-" plugins
+"  ___  __        ___    ___ ___       _______      
+" |\  \|\  \     |\  \  /  /|\  \     |\  ___ \     
+" \ \  \/  /|_   \ \  \/  / | \  \    \ \   __/|    
+"  \ \   ___  \   \ \    / / \ \  \    \ \  \_|/__  
+"   \ \  \\ \  \   \/  /  /   \ \  \____\ \  \_|\ \ 
+"    \ \__\\ \__\__/  / /      \ \_______\ \_______\
+"     \|__| \|__|\___/ /        \|_______|\|_______|
+"               \|___|/                             
+"
+" Filename:     .vimrc
+" Github:       https://github.com/kyletruong/dotfiles
+" Maintainer:   Kyle Truong
+
+" Plugins {{{
 let need_to_install_plugins = 0
 if has('nvim')
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -24,22 +37,19 @@ Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-signify'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'mhinz/vim-startify'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-filetype plugin indent on
-syntax on
 
 if need_to_install_plugins == 1
     echo "Installing plugins..."
@@ -47,80 +57,46 @@ if need_to_install_plugins == 1
     echo "Done!"
     q
 endif
+" }}}
 
-" neovim stuff
+" Neovim {{{
 if has('nvim')
     let g:python3_host_prog = '/usr/local/opt/python@3.8/bin/python3'
     let g:python_host_prog = '/usr/bin/python2'
+    let g:ruby_host_prog = '/usr/local/bin/neovim-ruby-host'
     set guicursor=
 endif
+" }}}
 
-" some remaps
+" Miscellaneous {{{
+
+" remaps
 map <space> <leader>
-nnoremap <leader>m :MarkdownPreview<cr>
 nnoremap <C-]> g<C-]>
-command WQ wq
-command Wq wq
-command W w
-command Q q
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+nnoremap <leader>ve :vsp ~/dotfiles/.vimrc<CR>
+nnoremap <leader>vs :so ~/dotfiles/.vimrc<CR> \| :doautocmd BufRead<CR>
 
-" signify
-let g:signify_sign_delete = '_'
-let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change = '~'
-let g:signify_sign_show_count = 0
-let g:signify_sign_show_text = 1
-nnoremap <leader>s :SignifyToggle<CR>
-
-" startify
-let g:startify_change_to_vcs_root = 1
-
-" fzf
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>gf :GFiles?<cr>
-nnoremap <leader>rr :Rg<space><cr>
-let g:fzf_buffers_jump = 1
-let g:fzf_action = {
-    \ 'ctrl-i': 'split',
-    \ 'ctrl-s': 'vsplit' }
-
-" blink cursor instead of beeping
-set vb t_vb=
-set noerrorbells
-set novisualbell
-
-" always show the status bar
-set laststatus=2
-
-" enable 256 colors
-set t_Co=256
-set t_ut=
+" colors
 set termguicolors
-
-" more stuff
-set ttyfast
-set autoread
-set modelines=0
 
 " searching
 nnoremap / /\v
 vnoremap / /\v
-set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 set showmatch
-set shortmess-=S
 map <leader><space> :noh<CR>
 
 " turn on line numbering
 set nu rnu
 
 " sane text files
+set modifiable
 set fileformat=unix
-set encoding=utf-8
 set fileencoding=utf-8
 
 " sane editing
@@ -135,59 +111,30 @@ set noshiftround
 set viminfo='25,\"50,n~/.viminfo
 autocmd FileType python setlocal ts=4 sts=4 sw=4
 
-" indent/unindent with tab/shift-tab
-nmap <Tab> >>
-imap <S-Tab> <Esc><<i
-nmap <S-tab> <<
-
 " mouse
 set mouse=a
 let g:is_mouse_enabled = 1
 
 " color scheme
 colorscheme onedark
-filetype on
-filetype plugin indent on
-
-" lightline
-set noshowmode
-let g:lightline = {
-    \ 'colorscheme': 'onedark',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
-    \ },
-\ }
 
 " code folding
 set foldmethod=indent
 set foldlevel=99
 
+" copy, cut and paste
+vmap <C-c> "+y
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
+
 " buffer stuff
 set hidden
-let g:buftabline_plug_max = 13
-let g:buftabline_indicators = 1
 nmap <leader>[ :bp<CR>
 nmap <leader>] :bn<CR>
 nnoremap <leader>q :bp \| bd#<CR>
 nnoremap <leader>p :b#<CR>
 nnoremap <leader>o :BufOnly<CR>
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
-nmap <leader>- <Plug>BufTabLine.Go(11)
-nmap <leader>= <Plug>BufTabLine.Go(12)
-nmap <leader>\ <Plug>BufTabLine.Go(13)
 
 " Save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
@@ -216,24 +163,90 @@ if v:version >= 700
     autocmd BufEnter * call AutoRestoreWinView()
 endif
 
-" fugitive
+" restore place in file from previous session
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" disable autoindent when pasting text
+" source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+function! XTermPasteBegin()
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" }}}
+
+" Buftabline {{{
+let g:buftabline_plug_max = 13
+let g:buftabline_indicators = 1
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+nmap <leader>- <Plug>BufTabLine.Go(11)
+nmap <leader>= <Plug>BufTabLine.Go(12)
+nmap <leader>\ <Plug>BufTabLine.Go(13)
+" }}}
+
+" Fugitive {{{
 nmap <leader>gl :diffget //3<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gs :G<CR>
 nmap <leader>gd :Gdiffsplit<CR>
 set diffopt+=vertical
+" }}}
 
-" restore place in file from previous session
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" FZF {{{
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>gf :GFiles?<cr>
+nnoremap <leader>rr :Rg<space><cr>
+let g:fzf_buffers_jump = 1
+let g:fzf_action = {
+    \ 'ctrl-i': 'split',
+    \ 'ctrl-s': 'vsplit' }
+" }}}
 
-" nerdtree
+" Lightline {{{
+set noshowmode
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+\ }
+" }}}
+
+" Nerdtree {{{
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let NERDTreeMinimalUI = 1
 let g:nerdtree_open = 0
+let g:NERDTreeWinSize = 45
 map <leader>N :call NERDTreeFind()<CR>
 map <leader>n :call NERDTreeToggle()<CR>
+map <leader>m :call NERDTreeResetAndFind()<CR>
 nnoremap <C-w>= :call Equal()<CR> \| :wincmd =<CR> 
+
+function! NERDTreeResetAndFind()
+    :call NERDTreeFind()
+    :call NERDTreeFind()
+endfunction
 
 function! NERDTreeToggle()
     silent NERDTreeToggle
@@ -246,7 +259,7 @@ function! NERDTreeToggle()
 endfunction
 
 function! NERDTreeFind()
-    let g:NERDTreeWinSize = 31
+    let g:NERDTreeWinSize = 45
     if g:nerdtree_open == 1
         let g:nerdtree_open = 0
         NERDTreeClose
@@ -269,30 +282,26 @@ function! Equal()
     TagbarToggle
     TagbarToggle
 endfunction
+" }}}
 
-" tag list
-map <leader>t :TagbarToggle<CR>
+" Signify {{{
+let g:signify_sign_delete = '_'
+let g:signify_sign_delete_first_line = '‾'
+let g:signify_sign_change = '~'
+let g:signify_sign_show_count = 0
+let g:signify_sign_show_text = 1
+nnoremap <leader>s :SignifyToggle<CR>
+" }}}
 
-" copy, cut and paste
-vmap <C-c> "+y
-vmap <C-x> "+c
-vmap <C-v> c<ESC>"+p
-imap <C-v> <ESC>"+pa
+" Startify {{{
+" let g:startify_change_to_vcs_root = 1
+" }}}
 
-" disable autoindent when pasting text
-" source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
+" Tagbar {{{
+" map <leader>t :TagbarToggle<CR>
+" }}}
 
-function! XTermPasteBegin()
-    set pastetoggle=<Esc>[201~
-    set paste
-    return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-" ------------------------------------ CoC -----------------------------------
+" CoC {{{
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -417,3 +426,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
