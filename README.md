@@ -9,6 +9,7 @@ if you want my setup. *macOS only*.
 
 ./install.sh ~
 ```
-*Note: when fzf installs enter "no" when prompted to update shell config files -- config files are
-already configured for fzf*
-
+### Notes
+1. When FZF installs enter `no` when prompted to update shell config files -- they're already
+   configured.
+2. Don't switch to Oh My Zsh until install is complete.
