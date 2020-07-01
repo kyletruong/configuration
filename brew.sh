@@ -14,6 +14,7 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install fzf
 brew install ripgrep
 brew install fd
+brew install bat
 
 # Cask install MacOS applications
 brew cask install iterm2

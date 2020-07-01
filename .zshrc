@@ -97,14 +97,18 @@ source $ZSH/oh-my-zsh.sh
 # ---------- my stuff ---------- 
 
 # aliases
-alias python='python3'
-alias py='python3'
 alias no='node'
-alias jl='jupyter lab'
 alias ls='ls -l'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias vi='nvim'
+alias b='git rev-parse --abbrev-ref HEAD'
+alias nrs='npm run start'
+alias nrd='npm run dev'
+alias cat='bat'
+
+# bat
+export BAT_THEME='base16'
 
 # prompt
 prompt_context(){}
