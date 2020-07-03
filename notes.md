@@ -3,6 +3,8 @@
 `set guifont=Hack_Nerd_font:h16` to install font.  
 Select font in iTerm -> Profiles -> Text -> Font and pick `Hack Nerd Font Mono`.
 
+SF Mono Powerline: `https://github.com/Twixes/SF-Mono-Powerline`
+
 ### Colors
 Import `one-dark.itermcolors` into iTerm -> Profiles -> Colors -> Color Presets.
 

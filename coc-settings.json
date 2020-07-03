@@ -1,0 +1,7 @@
+{
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "typescript.suggest.enabled": false,
+  "typescript.validate.enable": false,
+  "javascript.suggest.enabled": false,
+  "javascript.validate.enable": false
+}
