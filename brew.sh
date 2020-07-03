@@ -23,3 +23,5 @@ brew cask install spotify
 brew cask install visual-studio-code
 brew cask install google-chrome
 brew cask install karabiner-elements
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font

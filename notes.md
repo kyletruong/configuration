@@ -1,6 +1,7 @@
 # iTerm
 ### Fonts
-Select font in iTerm -> Profiles -> Text -> Font and select `SF Mono Powerline Semibold`.
+`set guifont=Hack_Nerd_font:h16` to install font.  
+Select font in iTerm -> Profiles -> Text -> Font and pick `Hack Nerd Font Mono`.
 
 ### Colors
 Import `one-dark.itermcolors` into iTerm -> Profiles -> Colors -> Color Presets.

@@ -49,6 +49,8 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'mhinz/vim-startify'
 " Plug 'airblade/vim-rooter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 if need_to_install_plugins == 1
@@ -133,7 +135,7 @@ set hidden
 nmap <leader>[ :bp<CR>
 nmap <leader>] :bn<CR>
 nnoremap <leader>q :bp \| bd#<CR>
-nnoremap <leader>p :b#<CR>
+nnoremap <leader>p <C-^>
 nnoremap <leader>o :BufOnly<CR>
 
 " Save current view settings on a per-window, per-buffer basis.
@@ -209,7 +211,7 @@ set diffopt+=vertical
 " FZF {{{
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>t :Buffers<cr>
 nnoremap <leader>gf :GFiles?<cr>
 nnoremap <leader>rr :Rg<space><cr>
 let g:fzf_buffers_jump = 1
@@ -279,8 +281,8 @@ endfunction
 function! Equal()
     call NERDTreeFind()
     call NERDTreeFind()
-    TagbarToggle
-    TagbarToggle
+    " TagbarToggle
+    " TagbarToggle
 endfunction
 " }}}
 
